@@ -1,0 +1,101 @@
+
+
+<view class="page">
+  <view class='header'>
+              <view class="search">
+                <image src='/images/搜索.png'></image>
+                    <input style="font-size:12px;" bindinput="listenerNewLabelInput" placeholder="请输入物品名称" auto-focus = "true" confirm-type="search" bindconfirm="bindconfirm"></input>
+              </view>
+            </view>
+  <view class="swiper-container">
+    <swiper autoplay="auto" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
+      <block wx:for="{{dkList}}">
+        <swiper-item bindtap='optListItemClick1' data-item="{{item}}" data-idx="{{index}}" wx:key="key">
+          <image src="{{imgurl+item.pic}}" class="img"></image>
+          <view class='swipertitle'><text>{{item.title}}</text></view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="dots">
+      <block wx:for="{{dkList}}" wx:key="unique">
+        <view class="dot{{index == swiperCurrent ? ' active' : ''}}" bindtap="chuangEvent" id="{{index}}">{{index+1}}</view>
+      </block>
+    </view>
+  </view>
+
+<!--顶部导航栏-->
+<view class="swiper-tab">
+  <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">招领</view>
+  <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">报失</view>
+</view>
+
+<!--内容主体-->
+<swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange1">
+<swiper-item>
+  <!-- 列表 -->
+  <view class='CircleList' wx:for='{{dkList1}}'>
+    <!-- 头像、昵称、内容 -->
+    <view class='body-view' bindtap='optListItemClick' data-item="{{item}}">
+      <!-- 头像 -->
+      <view class='left-view'>
+        <image class='user-icon' src='{{imgurl+item.user.head}}'></image>
+      </view>
+      <view class='right-view'>
+        <!-- 昵称 -->
+        <view class='user-name-view'>
+          <label class='user-name'>{{item.user.name}}</label>
+        </view>
+        <!-- 内容 -->
+        <view class='user-content-view'>
+          <text class='user-content'>{{item.content}}</text>
+        </view>
+        <!-- 图片 -->
+        <view class='photo-view'>
+          <view class='photo' wx:for='{{item.img}}' style='width:{{photoWidth}}px;height:{{photoWidth}}px'>
+            <image bindtap='LookPhoto' data-photUrl='{{imgurl+item}}' src='{{imgurl+item}}' style='width:80px;height:80px'></image>
+          </view>
+        </view>
+        <!-- 地理位置 -->
+        <view class='user-address-view'>
+          <label>{{item.time+item.address}}</label>
+        </view>
+      </view>
+    </view>
+  </view>
+</swiper-item>
+
+<swiper-item>
+ <!-- 列表 -->
+  <view class='CircleList' wx:for='{{dkList1}}'>
+    <!-- 头像、昵称、内容 -->
+    <view class='body-view' bindtap='optListItemClick' data-item="{{item}}">
+      <!-- 头像 -->
+      <view class='left-view'>
+        <image class='user-icon' src='{{imgurl+item.user.head}}'></image>
+      </view>
+      <view class='right-view'>
+        <!-- 昵称 -->
+        <view class='user-name-view'>
+          <label class='user-name'>{{item.user.name}}</label>
+        </view>
+        <!-- 内容 -->
+        <view class='user-content-view'>
+          <text class='user-content'>{{item.content}}</text>
+        </view>
+        <!-- 图片 -->
+        <view class='photo-view'>
+          <view class='photo' wx:for='{{item.img}}' style='width:{{photoWidth}}px;height:{{photoWidth}}px'>
+            <image bindtap='LookPhoto' data-photUrl='{{imgurl+item}}' src='{{imgurl+item}}' style='width:80px;height:80px'></image>
+          </view>
+        </view>
+        <!-- 地理位置 -->
+        <view class='user-address-view'>
+          <label>{{item.time+item.address}}</label>
+        </view>
+      </view>
+    </view>
+  </view>
+</swiper-item>
+</swiper>
+
+</view>

@@ -1,0 +1,6 @@
+<view class='item'>
+  <view class='left'>
+    <image style="width: 100%; height: 200px; background-color: #eeeeee;" bindtap='clickImg1'  src="{{imgurl+pic}}"></image>
+    <text class='productNameText1'>{{content}}</text>
+  </view>
+</view>

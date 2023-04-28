@@ -1,0 +1,9 @@
+<view wx:for="{{dkList}}" data-item="{{item}}" class="text-room" data-idx="{{index}}" wx:key="key">
+<view class='item' bindtap='optListItemClick' data-item="{{item}}">
+  <view class='left'>
+    <text  class='text-maxcount'>{{item.title}}</text>
+    <text class='productNameText'>{{item.content}}</text>
+    <text class='productNameText1'>{{item.time}}</text>
+  </view>
+</view>
+</view>

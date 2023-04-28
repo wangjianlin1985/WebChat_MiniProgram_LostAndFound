@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swzl.dao.AdminDao">
+	<insert id="saveUser" parameterType="com.swzl.bean.UserEntity">
+		insert into t_user(id,name,sex,age,userName,phone,head,password)
+		values(#{id},#{name},#{sex},#{age},#{userName},#{phone},#{head},#{password})
+	</insert>
+
+	<select id="getUser" parameterType="java.util.Map" resultType="com.swzl.bean.UserEntity">
+		select * from t_user where 1=1
+		<if test="id != null"> and id=#{id}</if>
+		<if test="userName != null"> and userName=#{userName}</if>
+		<if test="password != null"> and password=#{password}</if>
+	</select>
+
+	<select id="user_list" parameterType="java.util.Map" resultType="com.swzl.bean.UserEntity">
+		select * from t_user where 1=1
+		<if test="userName != null and userName != ''">
+			and userName LIKE concat('%',#{userName},'%')
+		</if>
+		<if test="name != null and name != ''">
+			and name LIKE concat('%',#{name},'%')
+		</if>
+		<if test="sex != null and sex !=''"> and sex=#{sex}</if>
+		<if test="offset != null and limit != null"> limit #{offset},#{limit}</if>
+	</select>
+
+	<select id="user_list1" parameterType="java.util.Map" resultType="com.swzl.bean.UserEntity">
+		select * from t_user where 1=1
+		<if test="userName != null and userName != ''">
+			and userName LIKE concat('%',#{userName},'%')
+		</if>
+		<if test="name != null and name != ''">
+			and name LIKE concat('%',#{name},'%')
+		</if>
+		<if test="sex != null and sex !=''"> and sex=#{sex}</if>
+	</select>
+
+	<delete id="delauser" parameterType="com.swzl.bean.UserEntity">
+		delete from t_user where id=#{id}
+	</delete>
+
+	<update id="upinfo">
+		UPDATE t_user
+		<set>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="sex != null">
+				sex = #{sex},
+			</if>
+			<if test="phone != null">
+				phone = #{phone},
+			</if>
+			<if test="age != null">
+				age = #{age},
+			</if>
+			<if test="head != null">
+				head = #{head},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<sql id="updatepasswrod">
+		<if test="password != null">
+			password = #{password},
+		</if>
+	</sql>
+
+	<update id="uppasswrod" parameterType="java.util.Map">
+		UPDATE t_user
+		<set>
+			<include refid="updatepasswrod" />
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<!-- 公告相关 -->
+	<insert id="addgg" parameterType="com.swzl.bean.Notice">
+		insert into t_gg(id,title,content,time)
+		values(#{id},#{title},#{content},#{time})
+	</insert>
+
+	<select id="gg_list" parameterType="java.util.Map" resultType="com.swzl.bean.Notice">
+		select * from t_gg where 1=1
+		<if test="offset != null and limit != null"> limit #{offset},#{limit}</if>
+	</select>
+
+	<select id="gg_list1" parameterType="java.util.Map" resultType="com.swzl.bean.Notice">
+		select * from t_gg where 1=1
+	</select>
+
+	<delete id="delagg" parameterType="com.swzl.bean.Notice">
+		delete from t_gg where id=#{id}
+	</delete>
+
+	<!-- 广告相关 -->
+	<insert id="addbanner" parameterType="com.swzl.bean.BannerEntity">
+		insert into t_banner(id,title,content,pic)
+		values(#{id},#{title},#{content},#{pic})
+	</insert>
+
+	<select id="banner_list" parameterType="java.util.Map" resultType="com.swzl.bean.BannerEntity">
+		select * from t_banner where 1=1
+		<if test="title != null and title !=''"> and title=#{title}</if>
+		<if test="offset != null and limit != null"> limit #{offset},#{limit}</if>
+	</select>
+
+	<select id="banner_list1" parameterType="java.util.Map" resultType="com.swzl.bean.BannerEntity">
+		select * from t_banner where 1=1
+		<if test="title != null and title !=''"> and title=#{title}</if>
+	</select>
+
+	<delete id="delabanner" parameterType="com.swzl.bean.BannerEntity">
+		delete from t_banner where id=#{id}
+	</delete>
+
+	<!-- 失物相关 -->
+	<insert id="addlost" parameterType="com.swzl.bean.LostEntity">
+		insert into t_lost(id,userId,type,name,content,time,pic,phone,address,contacts,state)
+		values(#{id},#{userId},#{type},#{name},#{content},#{time},#{pic},#{phone},#{address},#{contacts},#{state})
+	</insert>
+
+	<select id="lost_list" parameterType="java.util.Map" resultType="com.swzl.bean.LostEntity">
+		select * from t_lost where 1=1
+		<if test="userId != null and userId !=''"> and userId=#{userId}</if>
+		<if test="type != null and type !=''"> and type=#{type}</if>
+		<if test="name != null and name != ''">
+			and name LIKE concat('%',#{name},'%')
+		</if>
+		<if test="state != null and state != ''">
+			and state LIKE concat('%',#{state},'%')
+		</if>
+		<if test="offset != null and limit != null"> limit #{offset},#{limit}</if>
+	</select>
+
+	<select id="lost_list1" parameterType="java.util.Map" resultType="com.swzl.bean.LostEntity">
+		select * from t_lost where 1=1
+		<if test="userId != null and userId !=''"> and userId=#{userId}</if>
+		<if test="name != null and name != ''">
+			and name LIKE concat('%',#{name},'%')
+		</if>
+		<if test="state != null and state != ''">
+			and state LIKE concat('%',#{state},'%')
+		</if>
+		<if test="type != null and type !=''"> and type=#{type}</if>
+	</select>
+
+	<delete id="delalost" parameterType="com.swzl.bean.LostEntity">
+		delete from t_lost where id=#{id}
+	</delete>
+
+	<update id="upswinfo">
+		UPDATE t_lost
+		<set>
+			<if test="state != null">
+				state = #{state},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+
+	<!-- 留言相关 -->
+	<insert id="addmsg" parameterType="com.swzl.bean.MessageEntity">
+		insert into t_msg(id,userId,lostId,content)
+		values(#{id},#{userId},#{lostId},#{content})
+	</insert>
+
+	<select id="msg_list" parameterType="java.util.Map" resultType="com.swzl.bean.MessageEntity">
+		select * from t_msg where 1=1
+		<if test="lostId != null and lostId != ''">
+			and lostId LIKE concat('%',#{lostId},'%')
+		</if>
+		<if test="offset != null and limit != null"> limit #{offset},#{limit}</if>
+	</select>
+
+	<select id="msg_list1" parameterType="java.util.Map" resultType="com.swzl.bean.MessageEntity">
+		select * from t_msg where 1=1
+		<if test="lostId != null and lostId != ''">
+			and lostId LIKE concat('%',#{lostId},'%')
+		</if>
+	</select>
+
+	<delete id="delamsg" parameterType="com.swzl.bean.MessageEntity">
+		delete from t_msg where id=#{id}
+	</delete>
+</mapper>

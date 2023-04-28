@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxdj.dao.AdminDao">
+	<insert id="saveUser" parameterType="com.yxdj.bean.UserEntity">
+		insert into t_user(id,userName,password,realname,sex,address,phone,email)
+		values(#{id},#{userName},#{password},#{realname},#{sex},#{address},#{phone},#{email})
+	</insert>
+	
+	<select id="getUser" parameterType="java.util.Map" resultType="com.yxdj.bean.UserEntity">
+		select * from t_user where 1=1 
+		<if test="id != null"> and id=#{id}</if>
+		<if test="userName != null"> and userName=#{userName}</if>
+		<if test="password != null"> and password=#{password}</if>
+	</select>
+	
+	 <update id="upinfo">
+		UPDATE t_user
+		<set>
+			<if test="userName != null">
+                userName = #{userName},
+			</if>
+			<if test="realname != null">
+                realname = #{realname},
+			</if>
+			<if test="sex != null">
+                sex = #{sex},
+			</if>
+			<if test="address != null">
+                address = #{address},
+			</if>
+			<if test="phone != null">
+                phone = #{phone},
+			</if>
+			<if test="email != null">
+                email = #{email},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<update id="uppasswrod" parameterType="java.util.Map">
+		UPDATE t_user
+		<set>
+			<if test="password != null">
+            	password = #{password},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	
+	<select id="finUserAll" parameterType="java.util.Map" resultType="com.yxdj.bean.UserEntity">
+		select * from t_user where 1=1
+		<if test="phone != null and phone != ''">
+			and phone LIKE concat('%',#{phone},'%')
+		</if>
+		<if test="userName != null and userName != ''">
+			and userName LIKE concat('%',#{userName},'%')
+		</if>
+		<if test="realname != null and realname != ''">
+			and realname LIKE concat('%',#{realname},'%')
+		</if>
+		<if test="offset != null and limit != null"> limit #{offset},#{limit}</if>
+	</select>
+	
+	<select id="finUserAll1" parameterType="java.util.Map" resultType="com.yxdj.bean.UserEntity">
+		select * from t_user where 1=1
+		<if test="phone != null and phone != ''">
+			and phone LIKE concat('%',#{phone},'%')
+		</if>
+		<if test="userName != null and userName != ''">
+			and userName LIKE concat('%',#{userName},'%')
+		</if>
+		<if test="realname != null and realname != ''">
+			and realname LIKE concat('%',#{realname},'%')
+		</if>
+	</select>
+	
+	<delete id="delauser" parameterType="com.yxdj.bean.UserEntity">
+		delete from t_user where id=#{id}
+	</delete>
+	
+	
+	<insert id="addgg" parameterType="com.yxdj.bean.Notice">
+		insert into t_gg(id,title,content,time)
+		values(#{id},#{title},#{content},#{time})
+	</insert> 
+	
+	<select id="gg_list" parameterType="java.util.Map" resultType="com.yxdj.bean.Notice">
+		select * from t_gg where 1=1
+		<if test="offset != null and limit != null"> limit #{offset},#{limit}</if>
+	</select> 
+	
+	<select id="gg_list1" parameterType="java.util.Map" resultType="com.yxdj.bean.Notice">
+		select * from t_gg where 1=1
+	</select> 
+	
+	<delete id="delagg" parameterType="com.yxdj.bean.Notice">
+		delete from t_gg where id=#{id}
+	</delete>
+    
+    
+    <select id="bus_list" parameterType="java.util.Map"
+		resultType="com.yxdj.bean.BusinessEntity">
+		select * from t_bus where 1=1
+		<if test="userName != null and userName != ''">
+			and userName LIKE concat('%',#{userName},'%')
+		</if>
+		<if test="type != null"> and type=#{type}</if>
+		<if test="name != null and name != ''">
+			and name LIKE concat('%',#{name},'%')
+		</if>
+		<if test="offset != null and limit != null"> limit #{offset},#{limit}</if>
+	</select>
+
+	<select id="bus_list1" parameterType="java.util.Map"
+		resultType="com.yxdj.bean.BusinessEntity">
+		select * from t_bus where 1=1
+		<if test="userName != null and userName != ''">
+			and userName LIKE concat('%',#{userName},'%')
+		</if>
+		<if test="name != null and name != ''">
+			and name LIKE concat('%',#{name},'%')
+		</if>
+	</select>
+
+	<delete id="delabus" parameterType="com.yxdj.bean.BusinessEntity">
+		delete from t_bus where
+		id=#{id}
+	</delete>
+	
+	
+	<insert id="saveBus" parameterType="com.yxdj.bean.BusinessEntity">
+		insert into t_bus(id,userName,password,name,content,pic,licensepic,state)
+		values(#{id},#{userName},#{password},#{name},#{content},#{pic},#{licensepic},#{state})
+	</insert>
+	
+	<select id="getBus" parameterType="java.util.Map" resultType="com.yxdj.bean.BusinessEntity">
+		select * from t_bus where 1=1 
+		<if test="id != null"> and id=#{id}</if>
+		<if test="userName != null"> and userName=#{userName}</if>
+		<if test="password != null"> and password=#{password}</if>
+	</select>
+	
+	 <update id="busupinfo">
+		UPDATE t_bus
+		<set>
+			 <if test="content != null">
+                content = #{content},
+			</if>
+			<if test="name != null">
+                name = #{name},
+			</if>
+			<if test="state != null">
+                state = #{state},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<update id="busuppasswrod" parameterType="java.util.Map">
+		UPDATE t_user
+		<set>
+			<if test="password != null">
+            password = #{password},
+		</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<insert id="addType" parameterType="com.yxdj.bean.TypeEntity">
+		insert into t_type(id,userId,name)
+		values(#{id},#{userId},#{name})
+	</insert>
+	
+	<select id="gettype" parameterType="java.util.Map" resultType="com.yxdj.bean.TypeEntity">
+		select * from t_type where 1=1 
+		<if test="id != null"> and id=#{id}</if>
+		<if test="userId != null"> and userId=#{userId}</if>
+		<if test="name != null"> and name=#{name}</if>
+	</select>
+	
+	<delete id="delatype" parameterType="com.yxdj.bean.TypeEntity">
+		delete from t_type where
+		id=#{id}
+	</delete>
+	
+	<select id="type_list" parameterType="java.util.Map"
+		resultType="com.yxdj.bean.TypeEntity">
+		select * from t_type where 1=1
+		<if test="userId != null and userId != ''">
+			and userId LIKE concat('%',#{userId},'%')
+		</if>
+		<if test="name != null and name != ''">
+			and name LIKE concat('%',#{name},'%')
+		</if>
+		<if test="offset != null and limit != null"> limit #{offset},#{limit}</if>
+	</select>
+
+	<select id="type_list1" parameterType="java.util.Map"
+		resultType="com.yxdj.bean.TypeEntity">
+		select * from t_type where 1=1
+		<if test="userId != null and userId != ''">
+			and userId LIKE concat('%',#{userId},'%')
+		</if>
+		<if test="name != null and name != ''">
+			and name LIKE concat('%',#{name},'%')
+		</if>
+	</select>
+	
+	<insert id="addshop" parameterType="com.yxdj.bean.ShopEntity">
+		insert into t_shop(id,userId,typeId,name,content,pic,price)
+		values(#{id},#{userId},#{typeId},#{name},#{content},#{pic},#{price})
+	</insert>
+	
+	<select id="getshop" parameterType="java.util.Map" resultType="com.yxdj.bean.ShopEntity">
+		select * from t_shop where 1=1 
+		<if test="id != null"> and id=#{id}</if>
+		<if test="userId != null"> and userId=#{userId}</if>
+		<if test="typeId != null"> and typeId=#{typeId}</if>
+		<if test="name != null"> and name=#{name}</if>
+	</select>
+	
+	<delete id="delashop" parameterType="com.yxdj.bean.ShopEntity">
+		delete from t_shop where
+		id=#{id}
+	</delete>
+	
+	<select id="shop_list" parameterType="java.util.Map"
+		resultType="com.yxdj.bean.ShopEntity">
+		select * from t_shop where 1=1
+		<if test="userId != null and userId != ''">
+			and userId LIKE concat('%',#{userId},'%')
+		</if>
+		<if test="typeId != null and typeId != ''">
+			and typeId LIKE concat('%',#{typeId},'%')
+		</if>
+		<if test="name != null and name != ''">
+			and name LIKE concat('%',#{name},'%')
+		</if>
+		<if test="offset != null and limit != null"> limit #{offset},#{limit}</if>
+	</select>
+
+	<select id="shop_list1" parameterType="java.util.Map"
+		resultType="com.yxdj.bean.ShopEntity">
+		select * from t_shop where 1=1
+		<if test="userId != null and userId != ''">
+			and userId LIKE concat('%',#{userId},'%')
+		</if>
+		<if test="typeId != null and typeId != ''">
+			and typeId LIKE concat('%',#{typeId},'%')
+		</if>
+		<if test="name != null and name != ''">
+			and name LIKE concat('%',#{name},'%')
+		</if>
+	</select>
+    
+    
+    <insert id="addorder" parameterType="com.yxdj.bean.OrderEntity">
+		insert into t_order(id,userId,shopId,busId,realname,phone,address,state)
+		values(#{id},#{userId},#{shopId},#{busId},#{realname},#{phone},#{address},#{state})
+	</insert>
+	
+	<update id="uppstate" parameterType="java.util.Map">
+		UPDATE t_order
+		<set>
+			<if test="state != null">
+            	state = #{state},
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<select id="order_list" parameterType="java.util.Map"
+		resultType="com.yxdj.bean.OrderEntity">
+		select * from t_order where 1=1
+		<if test="userId != null and userId != ''">
+			and userId LIKE concat('%',#{userId},'%')
+		</if>
+		<if test="busId != null and busId != ''">
+			and busId LIKE concat('%',#{busId},'%')
+		</if>
+		<if test="offset != null and limit != null"> limit #{offset},#{limit}</if>
+	</select>
+
+	<select id="order_list1" parameterType="java.util.Map"
+		resultType="com.yxdj.bean.OrderEntity">
+		select * from t_order where 1=1
+		<if test="userId != null and userId != ''">
+			and userId LIKE concat('%',#{userId},'%')
+		</if>
+		<if test="busId != null and busId != ''">
+			and busId LIKE concat('%',#{busId},'%')
+		</if>
+	</select>
+</mapper>

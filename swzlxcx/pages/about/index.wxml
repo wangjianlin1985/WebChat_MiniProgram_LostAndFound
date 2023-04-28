@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="login-icon">
+  <image class="login-img" src="/images/img-home.png"></image>
+</view>
+
+<view class="login-from">
+  <!--QQ-->
+  <view class="inputView">
+    <label class="loginLab">QQ</label>
+    <input class="inputText" type="text" value="{{'341958195'}}" disabled="readonly" />
+  </view>
+
+  <!--微信-->
+  <view class="inputView">
+    <label class="loginLab">微信</label>
+    <input class="inputText" type="text" value="{{'wgl15419581'}}" disabled="readonly"/>
+  </view>
+
+  <!--电话-->
+  <view class="inputView">
+    <label class="loginLab">电话</label>
+    <input class="inputText" type="text" value="{{'13512339834'}}" disabled="readonly"/>
+  </view>
+  
+</view>
+
+</view>

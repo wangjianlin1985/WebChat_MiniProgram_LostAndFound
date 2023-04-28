@@ -1,0 +1,47 @@
+<view class="page">
+  <view class='CircleList'>
+    <view class='body-view'>
+      <view class='right-view'>
+        <view class='user-name-view'>
+          <label class='user-name'>{{'物品名称：'+name +  '----- 类型：'+type}}</label>
+        </view>
+        <view class='user-name-view'>
+          <label class='user-name'>{{time + address}}</label>
+        </view>
+        <view class='user-name-view'>
+          <label class='user-name'bindtap='call'>{{'联系人：'+contacts + '----- 联系电话:'+phone}}</label>
+        </view>
+        <!-- 内容 -->
+        <view class='user-content-view'>
+          <text class='user-content'>{{item.content}}</text>
+        </view>
+        <!-- 图片 -->
+        <view class='photo-view'>
+          <view class='photo' wx:for='{{img}}' style='width:{{photoWidth}}px;height:{{photoWidth}}px'>
+            <image bindtap='LookPhoto' data-photUrl='{{imgurl+item}}' src='{{imgurl+item}}' style='width:80px;height:80px'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bg">
+    <text class='text-maxcount'>{{'留言'}}</text>
+</view>
+
+<view class="line"></view>
+
+  <view class="text-room" >
+  <view wx:for="{{dkList}}" data-item="{{item}}" class='item'  data-idx="{{index}}" wx:key="key">
+    <view class='left'>
+      <text  class='text-maxcount'>{{item.userName}}</text>
+      <text class='productNameText'>{{item.content}}</text>
+    </view>
+  </view>
+</view>
+
+<div class="input-box">
+			<input type="text" placeholder="请输入留言内容" bindinput="nameInput" />
+			<button bindtap="optListItemClick">留言</button>
+		</div>
+</view>

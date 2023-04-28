@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/regUser/index",
+    "pages/resetPass/index",
+    "pages/userInfo/index",
+    "pages/index/index",
+    "pages/bannerxq/index",
+    "pages/notice/index",
+    "pages/noticexq/index",
+    "pages/my/index",
+    "pages/addlost/index",
+    "pages/mylost/index",
+    "pages/mylost1/index",
+    "pages/lostxq/index",
+    "pages/about/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#6AA675",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#C6C6C6",
+    "selectedColor": "#31b977",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_active.png"
+      },
+      {
+        "pagePath": "pages/notice/index",
+        "text": "公告",
+        "iconPath": "images/gg.png",
+        "selectedIconPath": "images/gg_active.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my_active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "将用于获取您得当前位置"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

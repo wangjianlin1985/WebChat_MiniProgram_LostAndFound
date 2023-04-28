@@ -1,0 +1,8 @@
+<view class='item'>
+  <view class='left'>
+    <text  class='text-maxcount'>{{title}}</text>
+    <text class='text-maxcount'>{{content}}</text>
+    <text class='text-maxcount'>{{time}}</text>
+  </view>
+ 
+</view>

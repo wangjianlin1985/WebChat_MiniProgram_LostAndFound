@@ -1,0 +1,22 @@
+<!--pages/user-center/usercenter.wxml-->
+<view class='_root'>
+  <view class="view_1">
+    <view class="view_image_text">
+      <image class="image_radius" bindtap='imageClick' src="{{imgUrl+head}}" />
+      <text>{{name}}</text>
+    </view>
+  </view>
+
+    <!--收藏夹-->
+    <block wx:for="{{optlist}}">
+        <view class='view-list-item' bindtap='optListItemClick' data-url='{{item.url}}'>
+            <view style="display: inline-flex;flex-direction: row;align-items: center;padding-left: 15px;">
+              <image  src='{{item.img}}' style='width:40rpx;height: 40rpx;'></image>
+              <text style='margin-left:20rpx;font-size:30rpx;'>{{item.name}}</text>
+            </view>
+            <image src='/images/icon_right_arrow.png' style='width:40rpx;height:40rpx;margin-right:20rpx;'></image>
+        </view>
+        <view style='width:100%;height:1px;background-color: #eaeaea;'></view>
+    </block>
+     <button  class='btn-submit' size='default' bindtap="exitAccount">退出</button>
+</view>

@@ -1,0 +1,25 @@
+var unit={
+  typeFilter:function(item){
+    var statusJson = {};
+    var x = "";
+    var y = "";
+   
+    switch (item) {
+      case "0":
+        x = "待归还";
+        y = "#2F4F4F";
+      break;
+    case "1":
+        x = "已归还";
+        y = "#00FF00";
+      break;
+    }
+    statusJson.x = x;
+    statusJson.y = y;
+    return statusJson;
+  }
+}
+module.exports={
+  typeFilter:unit.typeFilter
+}
+
